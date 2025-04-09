@@ -1,0 +1,32 @@
+{
+    "name": "browser-spellfix",
+    "description": "browser-spellfix",
+    "version": "1.1",
+    "manifest_version": 3,
+    "icons": {
+        "16": "images/icon-16.png",
+        "32": "images/icon-32.png",
+        "48": "images/icon-48.png",
+        "128": "images/icon-128.png"
+    },
+    "background": {
+        "scripts": ["scripts/service-worker.js"],
+        "service_worker": "scripts/service-worker.js",
+        "type": "module"
+    },
+    "action": {
+        "default_icon": {
+            "16": "images/icon-16.png",
+            "32": "images/icon-32.png",
+            "48": "images/icon-48.png",
+            "128": "images/icon-128.png"
+        },
+        "default_popup": "popup.html",
+        "default_title": "broswer-spellfix"
+    },
+    "permissions": [
+        "activeTab",
+        "scripting",
+        "storage"
+    ]
+}
