@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .container {
+            padding: 20px;
+            min-width: 300px;
+        }
+        .api-input {
+            margin-top: 15px;
+            width: 100%;
+        }
+        .endpoint-input {
+            margin-top: 10px;
+            width: 100%;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div>
+            <input type="radio" id="openai" name="model" value="openai" checked>
+            <label for="openai">OpenAI</label><br>
+            
+            <input type="radio" id="gemini" name="model" value="gemini">
+            <label for="gemini">Gemini</label><br>
+            
+            <input type="radio" id="anthropic" name="model" value="anthropic">
+            <label for="anthropic">Anthropic</label><br>
+            
+            <input type="radio" id="azure" name="model" value="azure">
+            <label for="azure">Azure Open AI</label><br>
+            
+            <input type="radio" id="anythingllm" name="model" value="anythingllm">
+            <label for="anythingllm">Anything LLM</label>
+        </div>
+
+        <input type="text" id="apiKey" class="api-input" placeholder="Enter API Key">
+        <input type="text" id="endpoint" class="endpoint-input" placeholder="Enter Endpoint URL">
+
+        <script>
+            document.querySelectorAll('input[name="model"]').forEach(radio => {
+                radio.addEventListener('change', (e) => {
+                    const endpointInput = document.getElementById('endpoint');
+                    if (e.target.value === 'azure' || e.target.value === 'anythingllm') {
+                        endpointInput.style.display = 'block';
+                    } else {
+                        endpointInput.style.display = 'none';
+                    }
+                });
+            });
+        </script>
+    </div>
+</body>
+</html>

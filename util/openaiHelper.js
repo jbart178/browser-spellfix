@@ -1,34 +1,31 @@
-import { AzureOpenAI } from "openai";
-// TODO Reconfigure to use api, not sdk
+
 class OpenAIHelper {
-    static async #getClient() {
-        const config = await chrome.storage.local.get("apiKey", "deployment", "endpoint");
-        return new AzureOpenAI(config);
+    static async #getAccessToken(test = false) {
+        if (test) {
+            return process.env.key;
+        }
+        return chrome.storage.local.get("apiKey");
     }
 
-    static async gen(prompt, system = ` `) {
+    static async gen(prompt, system = `You are a helpful assistant.`, test = false) {
+        const endpoint = "https://api.openai.com/v1/responses"
 
-            const messages = [
-                {
-                    role: 'system',
-                    content: system
+        // Create response api call
+            const response = await fetch(endpoint, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${await this.#getAccessToken(test)}`
                 },
-                {
-                    role: 'user',
-                    content: prompt
-                }
-            ]
-
-            // CreateChatCompletion api call
-            const client = await this.#getClient()
-            const response = await client.chat.completions.create({
-                messages
-            });
-
-            // get response from AI
-            const message = response.choices[0].message.content.trim();
-            console.log(message.length);
-            return message;
+                body: JSON.stringify({
+                    "model": "gpt-4o-mini",
+                    "instructions": system,
+                    "input": prompt
+                })
+            })
+                .then(res => res.json())
+                .then(data => data.output[0].content[0].text);
+            return response;
     }
 }
 

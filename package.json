@@ -1,0 +1,23 @@
+{
+  "name": "browser-spellfix",
+  "version": "1.0.0",
+  "description": "I make mistakes when I write things in my browser all the time, I type too fast and I cannot be bothered to go back through and right-click each red squiggle and correct my mistakes, particularly when some spell checkers in browsers take a while because of all the other shit that the page is trying to render.",
+  "main": "test.js",
+  "type": "module",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jbart178/browser-spellfix.git"
+  },
+  "author": "Jackson Barton",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jbart178/browser-spellfix/issues"
+  },
+  "homepage": "https://github.com/jbart178/browser-spellfix#readme",
+  "dependencies": {
+    "dotenv": "^16.5.0"
+  }
+}
