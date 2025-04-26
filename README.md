@@ -5,3 +5,8 @@ I make mistakes when I write things in my browser all the time, I type too fast 
 Enter, browser-spellfix, so I can hit a hotkey and whatever garbage I just wrote can be piped into an LLM and replaced with what I said, but spelled correctly. 
 
 I do not care about what I am writing, I just want it to be spelled right, it doesn't even have to be grammatically correct, so long as it's not obvious that I suck at using a keyboard and just straightup do not care about mashing 7 keys at once despite aiming for the space bar (Update, it seemed convenient so I have instructed the LLM to also correct very obvious grammatical errors).
+
+## Current State
+- OpenAI based spellfix is implemented
+- generation not yet implemented
+- other LLM providers not yet implemented
