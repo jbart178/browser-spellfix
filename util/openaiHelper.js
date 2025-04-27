@@ -3,7 +3,6 @@
 export async function generateResponse(prompt, system = `You are a helpful assistant.`, test = false) {
     const endpoint = "https://api.openai.com/v1/responses"
     const token = await chrome.storage.local.get("apiKey");
-    console.log(token);
     // Create response api call
         const response = await fetch(endpoint, {
             method: "POST",

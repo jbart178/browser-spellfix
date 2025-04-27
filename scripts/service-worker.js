@@ -2,10 +2,11 @@ import { generateResponse } from "../util/openaiHelper.js"
 
 chrome.commands.onCommand.addListener(async (command) => {
     console.log(command);
+    let text;
     switch (command) {
         case  "run-spellfix":
             console.log("fixing text");
-            const text = await sendMessageToActiveTab({ "task": "get-text"});
+            text = await sendMessageToActiveTab({ "task": "get-text"});
             console.log(text);
             console.log(text.text || `could not get value of ${text.element}`);
             if (text.text) {
@@ -17,6 +18,14 @@ chrome.commands.onCommand.addListener(async (command) => {
 
         case "run-generate":
             console.log("generating text");
+            text = await sendMessageToActiveTab({ "task": "get-text"});
+            console.log(text);
+            console.log(text.text || `could not get value of ${text.element}`);
+            if (text.text) {
+                const response = await generateResponse(text.text, "You are a helpful assistant and will generate content based on the prompt the user provides. You will not communicate with the user, your primary objective is to generate content, be brief if possible but elaborate if required. Content generated should have a professional tone.");
+                console.log(response);
+                sendMessageToActiveTab({ "task": "replace-text", "text": response});
+            }
             break;
 
         default:
